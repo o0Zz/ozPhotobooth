@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Administration</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8">
+	</head>
+	
+	<body style="color: #000000; background-color: #ffffff">
+		<script>
+			
+			function loadConfig() {
+				let url = 'admin/config.json';
+
+				fetch(url)
+				.then(res => res.json())
+				.then((result_json) => {
+					console.log(result_json)
+					
+					
+				})
+				.catch(err => { throw err });
+			}
+			
+			loadConfig()
+		</script>
+
+		<center>
+		
+			<!--
+			<form action="/admin/apply_config" method="post">
+
+				<table style="width:40%">
+				  <tr>
+					<td>Compte à rebours</td>
+					<td><input type="text" name="firstname"></td> 
+				  </tr>
+				  <tr>
+					<td>Nombre de photo</td>
+					<td><input type="text" name="firstname"></td> 
+				  </tr>
+				  <tr>
+					<td>Intervalle entre les photos</td>
+					<td><input type="text" name="firstname"></td> 
+				  </tr>
+				  <tr>
+					<td>Textes image finale</td>
+					<td><textarea name="text" form="usrform"></textarea></td> 
+				  </tr>
+				  
+				</table>
+				
+				<br />
+				<input type="submit" value="Appliquer">
+				 
+			</form>
+			-->
+			<br />
+			<br />
+			<a href="/admin/photos.zip">Télécharger toutes les photos</a>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<!-- Supprimer toutes les photos: <a href="/admin/delete_photos" onclick="return confirm('Etes-vous sûr de vouloir supprimer toutes les photos ?')">ici</a> -->
+		</center>
+	</body>
+</html>
+
+
+
+
+
+

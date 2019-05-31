@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ozPhotoBooth</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8">
+		<style type="text/css">
+		.loading {
+			background: transparent url('loading_spinner.gif') center no-repeat;
+		}
+		body {
+			color: black;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.container {
+			height:100%;
+		}
+
+		html {
+		  height: 100%;
+		}
+		
+		.panel{
+			width:90%;
+			height:100%;
+			min-height:100%;   
+		}
+
+		.panel-body {
+			height: 20%;
+		}
+
+		</style>
+	</head>
+<body bgcolor="#FFFFFF">
+
+<center>
+<div class="container">
+	<div class='panel'>
+		<div class='panel-heading'>
+			<h2 style="font-weight: bold;">ozPhotobooth</h2>
+		</div>
+		<div class='panel-body'>
+			<button onclick="nextImage(1)" id="button_prev"> &#10094; Précédent </button>
+			<button onclick="nextImage(-1)"> Suivant &#10095; </button>
+			<br/>
+			<br/>
+			<br/>
+			<img class="loading" id="img" src="" style="width:90%; display='block'">
+		</div>
+	</div>
+</div>
+</center>
+
+  
+<script>
+
+var imageIndex = 0;
+var lastImageIndex = 0;
+
+function loadLastImage() {
+	let url = 'info.json';
+
+	fetch(url)
+	.then(res => res.json())
+	.then((result_json) => {
+		//console.log(result_json)
+		lastImageIndex = result_json.last_photo_id
+		showImage(result_json.last_photo_id);
+	})
+	.catch(err => { throw err });
+}
+
+function nextImage(n) {
+	showImage(imageIndex + n);
+}
+
+function showImage(n){
+	imageIndex = n
+	
+	if (imageIndex >= lastImageIndex)
+		document.getElementById("button_prev").style.visibility = 'hidden';
+	else
+		document.getElementById("button_prev").style.visibility = 'visible';
+		
+	console.log("Loading image: " + n + ".jpg");
+	document.getElementById("img").src = ""
+	document.getElementById("img").src = "/photo/" + n + ".jpg";
+}
+
+loadLastImage()
+
+</script>
+<center>
+	<br /><br /><br /><br />
+	<a href="/admin">Administration</a>
+</center>
+</body>
+</html>

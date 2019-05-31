@@ -1,0 +1,14 @@
+Sometime the photobooth take photo alone, Need to has a pullup/down
+Improve Photo Quality (move to picamera)
+Redirect all traffic to 192.168.4.1
+
+automatically generate final photo 10x15
+
+Add admin panel:
+	Download all photo
+	Delete all photo
+	Configure number of photo etc... json file
+
+Mode recovery
+
+impression ?
