@@ -122,7 +122,7 @@ class ozPhotobooth():
 					if event.type == ozPhotoboothEvent.ozPhotoboothEvent.ExitButton:
 						self.mfRunning = False
 					elif event.type == ozPhotoboothEvent.ozPhotoboothEvent.PictureButton:
-						if not self.mSequencer.IsRunning():
+						if self.mSequencer != None and not self.mSequencer.IsRunning() and not self.mSequencer.IsDone():
 							self.mSequencer.Start()
 
 				#Avoid infinite loop
