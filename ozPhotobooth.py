@@ -6,11 +6,13 @@
 # pip install Pillow
 
 import sys, os, threading, logging, traceback
-import ozPhotoboothConfig, ozPhotoboothTimer, ozPhotoboothSound, ozPhotoboothPhotoDisk, ozPhotoboothHTTPServer, ozPhotoboothPhotoPreview, ozPhotoboothSequence, ozPhotoboothEvent
+import ozPhotoboothConfig, ozPhotoboothTimer, ozPhotoboothSound, ozPhotoboothPhotoDisk, ozPhotoboothPhotoPreview, ozPhotoboothSequence, ozPhotoboothEvent
 import time
 import subprocess
 import re
 from network import ozDNSManager
+
+from ozPhotoboothHTTPServer import *
 
 if os.name != 'nt' and os.uname()[1] == 'raspberrypi':
 	from HAL.raspberry import ozPhotoboothAction, ozPhotoboothInput, ozPhotoboothCamera
@@ -57,7 +59,7 @@ class ozPhotobooth():
 		self.mPhotoDisk = ozPhotoboothPhotoDisk.ozPhotoboothPhotoDisk(self.mConfig)
 		
 		logger.debug("Loading HTTPServer ...")
-		self.mHTTPServer = ozPhotoboothHTTPServer.ozPhotoboothHTTPServer(self.mConfig, self.mPhotoDisk)
+		self.mHTTPServer = ozPhotoboothHTTPServer(self.mConfig, self.mPhotoDisk)
 		
 		logger.debug("Loading input ...")
 		
