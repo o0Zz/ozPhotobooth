@@ -10,7 +10,7 @@ import ozPhotoboothConfig, ozPhotoboothTimer, ozPhotoboothSound, ozPhotoboothPho
 import time
 import subprocess
 import re
-import network.ozDNSManager
+from network import ozDNSManager
 
 if os.name != 'nt' and os.uname()[1] == 'raspberrypi':
 	from HAL.raspberry import ozPhotoboothAction, ozPhotoboothInput, ozPhotoboothCamera
