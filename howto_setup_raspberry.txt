@@ -162,12 +162,13 @@ $ sudo systemctl stop hostapd
 	in /etc/dhcpcd.conf (Create it if it doesn't exists)
 	---------------------
 	interface wlan0
-    	  static ip_address=192.168.4.1/24
+TAB->		static ip_address=192.168.4.1/24
+TAB->		nohook wpa_supplicant   # don't call the wpa_supplicant hook
 
 	in /etc/dnsmasq.conf
 	---------------------
 	interface=wlan0      # Use the require wireless interface - usually wlan0
- 	  dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+ 	dhcp-range=192.168.4.2,192.168.4.250,255.255.255.0,5m #Lease time 5minute
 
 	in /etc/hostapd/hostapd.conf
 	---------------------
@@ -190,7 +191,22 @@ $ sudo systemctl stop hostapd
 	---------------------
 	DAEMON_CONF="/etc/hostapd/hostapd.conf"
 
-	
+
+sudo systemctl enable dnsmasq
+sudo systemctl start dnsmasq
+
+sudo systemctl restart dhcpcd
+
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl start hostapd
+
+Logs:
+
+tail -f /var/log/syslog 
+
+
+
 $iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.4.1:8080
 $iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination 192.168.4.1:8080
 

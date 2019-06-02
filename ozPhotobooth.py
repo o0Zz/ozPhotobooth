@@ -10,7 +10,7 @@ import ozPhotoboothConfig, ozPhotoboothTimer, ozPhotoboothSound, ozPhotoboothPho
 import time
 import subprocess
 import re
-import ozFakeDNS
+import network.ozDNSManager
 
 if os.name != 'nt' and os.uname()[1] == 'raspberrypi':
 	from HAL.raspberry import ozPhotoboothAction, ozPhotoboothInput, ozPhotoboothCamera
@@ -33,7 +33,7 @@ class ozPhotobooth():
 		self.mHTTPServer = None
 		self.mSound = None
 		self.mPhotoDisk = None
-		self.mDNSFake = None
+		self.mDNSManager = None
 		
 	def Setup(self, aConfigFilename):
 		self.mConfig = ozPhotoboothConfig.ozPhotoboothConfig(aConfigFilename)
@@ -79,8 +79,8 @@ class ozPhotobooth():
 		logger.debug("Loading DNSServer ...")
 		theDNSServerIP = self.mConfig.GetDNSServerIP()
 		if len(theDNSServerIP) > 0:
-			self.mDNSFake = ozFakeDNS.ozFakeDNS(theDNSServerIP)
-			self.mDNSFake.Start()
+			self.mDNSManager = ozDNSManager.ozDNSManager(theDNSServerIP)
+			self.mDNSManager.Start()
 			
 		return True
 
@@ -104,8 +104,8 @@ class ozPhotobooth():
 		if self.mCamera != None:
 			self.mCamera.Stop()
 
-		if self.mDNSFake != None:
-			self.mDNSFake.Stop()
+		if self.mDNSManager != None:
+			self.mDNSManager.Stop()
 			
 	def Run(self):
 		logger.info("Photobooth running...")

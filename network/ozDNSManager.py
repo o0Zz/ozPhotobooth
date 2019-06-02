@@ -156,7 +156,7 @@ class DNSHandler(socketserver.BaseRequestHandler):
             records += record
         return records
 		
-class ozFakeDNS(threading.Thread):
+class ozDNSManager(threading.Thread):
 	def __init__(self, anIP):
 		global IP
 		threading.Thread.__init__(self)
@@ -185,7 +185,7 @@ class ozFakeDNS(threading.Thread):
 		self.mServer.serve_forever()
 
 if __name__ == '__main__':
-	theDNS = ozFakeDNS("192.168.4.1")
+	theDNS = ozDNSManager("192.168.4.1")
 	theDNS.Start()
 	
 	while True: #for i in range (0, 10):
