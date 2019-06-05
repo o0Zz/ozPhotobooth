@@ -7,7 +7,7 @@ import logging, os, re, sys, random, cv2, numpy
 import ozPhotoboothConfig
 from PIL import Image
 
-USE_PIL = True
+USE_PIL = False
 
 if USE_PIL:
 	from ozPhotoboothPhotoPreviewPIL import ozPhotoboothPhotoPreviewPIL as ozPhotoboothPhotoPreview
@@ -64,7 +64,7 @@ def natural_sort_key(s):
 if __name__ == '__main__':
 	
 	#logger.basicConfig(filename='ozPhotobooth.log', level=logger.DEBUG, format='%(asctime)s %(module)s: %(levelname)-8s %(message)s')
-	logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format='%(asctime)s %(module)22s: %(levelname)-8s %(message)s')
+	logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format='%(asctime)s %(module)35s: %(levelname)-8s %(message)s')
 
 	thePhotoPath = None
 	thePreviewConfigPath = None

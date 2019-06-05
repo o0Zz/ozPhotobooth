@@ -13,7 +13,7 @@ class ozPhotoboothPhotoPreviewOpenCV2(ozPhotoboothPhotoPreviewBase.ozPhotoboothP
 	def __init__(self, aConfig, aPreviewDict):
 		ozPhotoboothPhotoPreviewBase.ozPhotoboothPhotoPreviewBase.__init__(self, aConfig, aPreviewDict)
 
-	def LoadImage(self, aPhotoPath):
+	def _LoadImage(self, aPhotoPath):
 		logger.debug("Loading image: " + aPhotoPath)
 		thePhoto = cv2.imread(aPhotoPath)
 		thePhoto = cv2.cvtColor( thePhoto, cv2.COLOR_BGR2RGBA )

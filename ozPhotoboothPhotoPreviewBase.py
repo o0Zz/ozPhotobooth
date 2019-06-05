@@ -15,6 +15,13 @@ class ozPhotoboothPhotoPreviewBase():
 		self.mPreviewDict = aPreviewDict
 		self.mBackground = self.LoadImage(self.mPreviewDict["background"])
 
+	def LoadImage(self, aPath):
+		if Image.open(aPath).mode == "CMYK":
+			logger.error("************** Unsupported 'CMYK' image format /!\\ Result will have wrong colors /!\\")
+			logger.error("************** Please convert your image: '" + aPath + "' to RGB (open with mspaint.exe and save as ...)")
+
+		return self._LoadImage(aPath)
+
 	def AddPhotoPath(self, aPhotoPath):
 		self.mPhotoList.append( self.LoadImage(aPhotoPath) )
 
@@ -81,4 +88,4 @@ class ozPhotoboothPhotoPreviewBase():
 		logger.info("Saving picture in: " + str(theFullPath))
 		theResultPicture = theResultPicture.convert('RGB')
 
-		theResultPicture.save(theFullPath, dpi=aDPI)
+		theResultPicture.save(theFullPath, dpi=aDPI, icc_profile=theImgBackground.info.get('icc_profile'))

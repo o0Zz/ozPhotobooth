@@ -17,7 +17,7 @@ class ozPhotoboothPhotoPreviewPIL(ozPhotoboothPhotoPreviewBase.ozPhotoboothPhoto
 		ozPhotoboothPhotoPreviewBase.ozPhotoboothPhotoPreviewBase.__init__(self, aConfig, aPreviewDict)
 		logger.debug("Using PIL Version: {}".format(PILLOW_VERSION))
 		
-	def LoadImage(self, aPhotoPath):
+	def _LoadImage(self, aPhotoPath):
 		logger.debug("Loading image: " + aPhotoPath)
 		theImg = Image.open(aPhotoPath)
 		return theImg.convert('RGBA')
