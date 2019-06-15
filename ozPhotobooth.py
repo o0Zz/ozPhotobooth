@@ -161,6 +161,21 @@ def CheckIPTables():
 		if not thefHasRedirect80To8080:
 			logger.info("No route found for forwarding port 80 to port 8080, adding it ...")
 			os.system("sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080")
+				
+# ================================================= 
+
+def AutoMountUSB():
+	kUSBKeyPath = ["/dev/sda1", "/dev/sdb1", "/dev/sdc1"]
+	if os.name != 'nt' and os.uname()[1] == 'raspberrypi':
+		for theDevPath in kUSBKeyPath:
+			if os.path.exists(theDevPath):
+				logger.info("Trying to mount " + theDevPath + " to /media/pi/usb")
+				os.system("sudo umount /media/pi/usb")
+				os.system("sudo mkdir -p /media/pi/usb")	
+				os.system("sudo mount " + theDevPath + " /media/pi/usb")
+				return
+			
+		logger.error("Unable to mount USB key: " + kUSBKeyPath + " not found !")
 
 # ================================================= 
 	
@@ -180,6 +195,7 @@ if __name__ == '__main__':
 			sys.exit(1)
 	
 	CheckIPTables()
+	AutoMountUSB()
 	
 	thePhotobooth = ozPhotobooth()
 
