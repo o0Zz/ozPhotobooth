@@ -55,7 +55,7 @@ class ozPhotobooth():
 		logger.debug("Loading sound ...")
 		self.mSound = ozPhotoboothSound.ozPhotoboothSound(self.mConfig)
 		
-		logger.debug("Loading disck ...")
+		logger.debug("Loading disk ...")
 		self.mPhotoDisk = ozPhotoboothPhotoDisk.ozPhotoboothPhotoDisk(self.mConfig)
 		
 		logger.debug("Loading HTTPServer ...")
@@ -181,9 +181,8 @@ def AutoMountUSB():
 	
 if __name__ == '__main__':
 
-	# logging.basicConfig(filename='ozPhotobooth.log', level=logging.DEBUG, format='%(asctime)s %(module)s: %(levelname)-8s %(message)s')
-	logging.basicConfig(stream=sys.stdout, level=logging.DEBUG,
-						format='%(asctime)s %(module)32s: %(levelname)-8s %(message)s\r')
+	logging.basicConfig(filename='ozPhotobooth.log', level=logging.DEBUG, format='%(asctime)s %(module)32s: %(levelname)-8s %(message)s')
+	logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format='%(asctime)s %(module)32s: %(levelname)-8s %(message)s\r')
 
 	#Working directory is the script directory
 	os.chdir(os.path.dirname(os.path.abspath(__file__)))

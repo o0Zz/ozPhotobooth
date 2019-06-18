@@ -24,7 +24,12 @@ class ozPhotoboothCamera(ozPhotoboothCameraBase.ozPhotoboothCameraBase):
 	def Setup(self):
 		logger.info("Looking for a camera...")
 		
-		pygame.init()
+		theInitSuccessCount, theInitFailCount = pygame.init()
+		if theInitFailCount > 0:
+			logger.error("pygame init failed to load some modules: " + str(theInitFailCount))
+		else:
+			logger.info("pygame init success !")
+		
 		self.mDisplay = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 		pygame.mouse.set_visible(False)
 			  

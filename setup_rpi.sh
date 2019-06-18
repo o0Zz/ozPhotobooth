@@ -143,6 +143,6 @@ SetupAccessPoint
 
 #Autostart photobooth
 mkdir -p /home/pi/.config/lxsession/LXDE-pi/
-echo @sudo /usr/bin/python3 /home/pi/ozPhotoBooth/ozPhotobooth.py >> /home/pi/.config/lxsession/LXDE-pi/autostart
+echo @sudo /usr/bin/python3 /home/pi/ozPhotoBooth/ozPhotobooth.py > /home/pi/.config/lxsession/LXDE-pi/autostart
 
 echo "Please reboot your raspberry pi !"
