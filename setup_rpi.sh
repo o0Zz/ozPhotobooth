@@ -1,5 +1,10 @@
 #!/bin/bash
 
+function DisableScreenSaver()
+{
+	sed -i -e 's/\[Seat:\*\]/\[Seat:\*\]\nxserver-command = X -nocursor -s 0 -dpms/g' /etc/lightdm/lightdm.conf
+}
+
 function SetupAccessPoint()
 {
 	echo "Setup access point..."
@@ -140,6 +145,8 @@ SetupPackages
 SetupBootTxt
 
 SetupAccessPoint
+
+DisableScreenSaver
 
 #Autostart photobooth
 mkdir -p /home/pi/.config/lxsession/LXDE-pi/

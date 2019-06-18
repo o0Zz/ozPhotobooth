@@ -62,6 +62,7 @@ class ozPhotoboothCamera(ozPhotoboothCameraBase.ozPhotoboothCameraBase):
 	def Stop(self):
 		self.mfRunning = False
 		self._RemoveOverlay()
+		self.mCamera.close()
 		
 	def OnOverlayUpdated(self, anOverlayImg):
 		if self.mfPreview == False:
@@ -76,9 +77,7 @@ class ozPhotoboothCamera(ozPhotoboothCameraBase.ozPhotoboothCameraBase):
 			if self.mCurrentOverlayLayer > 4:
 				self.mCurrentOverlayLayer = 3
 			
-			if self.mOverlay != None:
-				self.mCamera.remove_overlay(self.mOverlay)
-		
+			self._RemoveOverlay()
 			self.mOverlay = theTmpOverlay
 			
 	def GetOverlayResolution(self):
