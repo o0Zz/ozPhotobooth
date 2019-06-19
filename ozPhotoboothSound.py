@@ -13,8 +13,10 @@ class ozPhotoboothSound():
 		self.mSoundTable = [None, None, None]
 		self.mConfig = aConfig
 
-		pygame.mixer.init()
-
+		pygame.mixer.pre_init(48000, -16, 1, 1024)
+		pygame.init()
+		pygame.mixer.init(48000,-16,1,1024)
+		
 		if self.mConfig.GetSoundShot() != None:
 			self.mSoundTable[ozPhotoboothSound.Shot] = pygame.mixer.Sound(self.mConfig.GetSoundShot())
 		if self.mConfig.GetSoundCountdown() != None:

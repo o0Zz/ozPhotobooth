@@ -42,7 +42,10 @@ class ozPhotobooth():
 		if not self.mConfig.isLoaded():
 			logger.error("Unable to load configuration !")
 			return False
-
+			
+		logger.debug("Loading sound ...")
+		self.mSound = ozPhotoboothSound.ozPhotoboothSound(self.mConfig)
+		
 		logger.debug("Loading camera ...")
 		self.mCamera = ozPhotoboothCamera.ozPhotoboothCamera(self.mConfig)
 		if not self.mCamera.Setup():
@@ -52,8 +55,6 @@ class ozPhotobooth():
 		self.mCamera.Start()
 		self.mCamera.StartPreview()
 
-		logger.debug("Loading sound ...")
-		self.mSound = ozPhotoboothSound.ozPhotoboothSound(self.mConfig)
 		
 		logger.debug("Loading disk ...")
 		self.mPhotoDisk = ozPhotoboothPhotoDisk.ozPhotoboothPhotoDisk(self.mConfig)
