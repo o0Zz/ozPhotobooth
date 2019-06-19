@@ -52,15 +52,13 @@ class ozPhotoboothSequence(threading.Thread):
 			if not self.mConfig.Get("takeshot", "burst") or k == 0:
 			
 				for i in range (self.mConfig.Get("takeshot", "countdown"), 0, -1):
-
+					self.mCamera.SetText(str(i))
 					self.mSound.Play(ozPhotoboothSound.ozPhotoboothSound.Countdown)
 					self.mAction.SetButtonLed(True)
-					time.sleep(0.1)	
-					self.mCamera.SetText(str(i))
-					time.sleep(0.1)
+					time.sleep(0.2)
 					self.mAction.SetButtonLed(False)
-					time.sleep(0.8)
 					
+					time.sleep(0.8)
 					if not self.mfRunning:
 						return
 						
